@@ -30,8 +30,8 @@ export const DATA = {
   name: "Pascal Knuth",
   initials: "PK",
   url: "https://dillion.io",
-  location: "San Francisco, CA",
-  locationLink: "https://www.google.com/maps/place/sanfrancisco",
+  location: "Lübeck, Germany",
+  locationLink: "https://www.google.com/maps/place/L%C3%BCbeck",
   description:
     "Software Engineer turned Entrepreneur. I love building things and helping people. Very active on Twitter.",
   summary:
