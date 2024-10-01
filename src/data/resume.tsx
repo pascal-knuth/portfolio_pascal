@@ -33,12 +33,25 @@ export const DATA = {
   location: "Lübeck, Germany",
   locationLink: "https://www.google.com/maps/place/L%C3%BCbeck",
   description:
-    "Software Engineer turned Entrepreneur. I love building things and helping people. Very active on Twitter.",
+    "Accomplished Product Manager & Product Owner – Turning Ideas into Successful Products for Startups and Enterprises",
   summary:
-    "At the end of 2022, I quit my job as a software engineer to go fulltime into building and scaling my own SaaS businesses. In the past, [I pursued a double degree in computer science and business](/#education), [interned at big tech companies in Silicon Valley](https://www.youtube.com/watch?v=d-LJ2e5qKdE), and [competed in over 21 hackathons for fun](/#hackathons). I also had the pleasure of being a part of the first ever in-person cohort of buildspace called [buildspace sf1](https://buildspace.so/sf1).",
+    "With over a decade of experience as a Product Manager and Product Owner, I specialize in transforming innovative ideas into functional and scalable products. My expertise spans across various industries, including transportation, energy, entertainment, and technology, where I have successfully led projects for both startups and large enterprises like Deutsche Bahn, ENBW, and Eventim.My strength lies in bridging the gap between vision and execution through agile methodologies such as Scrum, SAFe, and Kanban. I am passionate about collaborating with cross-functional teams, conducting thorough market and user analyses, and delivering products that meet user needs and drive business growth. Whether it's guiding a startup from inception or optimizing processes for a large organization, I thrive on creating impactful solutions that turn ideas into thriving businesses.",
   avatarUrl: "/me.png",
   skills: [
-    "React",
+    "Agile Project Management",
+    "Scrum",
+    "SAFe",
+    "Kanban",
+    "Product Development",
+    "Product Ownership",
+    "User-Centric Design",
+    "Market Research",
+    "Stakeholder Engagement",
+    "Product Launch",
+    "Product Optimization",
+    "A/B Testing", 
+    "Data Analysis",
+    "Product Roadmapping",
     "Next.js",
     "Typescript",
     "Node.js",
@@ -48,7 +61,6 @@ export const DATA = {
     "Docker",
     "Kubernetes",
     "Java",
-    "C++",
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -63,11 +75,11 @@ export const DATA = {
         url: "https://dub.sh/dillion-github",
         icon: Icons.github,
 
-        navbar: true,
+        navbar: false,
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://dub.sh/dillion-linkedin",
+        url: "https://www.linkedin.com/in/pascal-knuth-5018a986/",
         icon: Icons.linkedin,
 
         navbar: true,
@@ -77,20 +89,20 @@ export const DATA = {
         url: "https://dub.sh/dillion-twitter",
         icon: Icons.x,
 
-        navbar: true,
+        navbar: false,
       },
       Youtube: {
         name: "Youtube",
         url: "https://dub.sh/dillion-youtube",
         icon: Icons.youtube,
-        navbar: true,
+        navbar: false,
       },
       email: {
         name: "Send Email",
-        url: "#",
+        url: "mailto:pk@pascal-knuth.de",
         icon: Icons.email,
 
-        navbar: false,
+        navbar: true,
       },
     },
   },
