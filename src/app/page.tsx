@@ -5,7 +5,7 @@ import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { DATA } from "@/data/resume";
+import { DATA, Education } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { useState, useEffect } from 'react';
@@ -18,8 +18,8 @@ function fetchWork() {
   return DATA.work();
 }
 
-export default function Page() {
-  const workData = use(fetchWork());
+export default async function Page() {
+  const educationData = await DATA.education();
 
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
@@ -88,19 +88,17 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <h2 className="text-xl font-bold">Education</h2>
           </BlurFade>
-          {DATA.education.map((education, id) => (
+          {educationData.map((education: Education, id: number) => (
             <BlurFade
               key={education.school}
               delay={BLUR_FADE_DELAY * 8 + id * 0.05}
             >
               <ResumeCard
-                key={education.school}
-                href={education.href}
                 logoUrl={education.logoUrl}
                 altText={education.school}
                 title={education.school}
                 subtitle={education.degree}
-                period={`${education.start} - ${education.end}`}
+                period={`${education.startDate} - ${education.endDate || 'Present'}`}
               />
             </BlurFade>
           ))}

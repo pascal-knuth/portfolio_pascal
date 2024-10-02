@@ -5,7 +5,7 @@ import { HomeIcon, NotebookIcon } from "lucide-react";
 interface CompanyACF {
   website_highlight?: boolean;
   ort?: string;
-  position?: string; // Add this line
+  position?: string;
   firmenlogo?: number;
   startdatum?: string;
   enddatum?: string;
@@ -24,6 +24,15 @@ interface Company {
   acf?: CompanyACF; // Make acf optional
   title?: { rendered: string };
   link?: string;
+}
+
+// Fügen Sie diese Interface-Definition hinzu
+export interface Education {
+  school: string;
+  degree: string;
+  startDate: string;
+  endDate: string;
+  logoUrl: string; // Ensure this is always a string
 }
 
 export const DATA = {
@@ -147,40 +156,36 @@ export const DATA = {
       return null;
     }))).filter(Boolean);
   },
-  education: [
-    {
-      school: "Buildspace",
-      href: "https://buildspace.so",
-      degree: "s3, s4, sf1, s5",
-      logoUrl: "/buildspace.jpg",
-      start: "2023",
-      end: "2024",
-    },
-    {
-      school: "University of Waterloo",
-      href: "https://uwaterloo.ca",
-      degree: "Bachelor's Degree of Computer Science (BCS)",
-      logoUrl: "/waterloo.png",
-      start: "2016",
-      end: "2021",
-    },
-    {
-      school: "Wilfrid Laurier University",
-      href: "https://wlu.ca",
-      degree: "Bachelor's Degree of Business Administration (BBA)",
-      logoUrl: "/laurier.png",
-      start: "2016",
-      end: "2021",
-    },
-    {
-      school: "International Baccalaureate",
-      href: "https://ibo.org",
-      degree: "IB Diploma",
-      logoUrl: "/ib.png",
-      start: "2012",
-      end: "2016",
-    },
-  ],
+  education: async (): Promise<Education[]> => {
+    const fetchLogo = async (logoId: number): Promise<string> => {
+      const response = await fetch(`https://pascalknuth.de/wp-json/wp/v2/media/${logoId}`);
+      const logoData = await response.json();
+      return logoData.source_url; // Verwenden Sie die source_url
+    };
+
+    const fetchEducation = async () => {
+      try {
+        const response = await fetch('https://pascalknuth.de/wp-json/wp/v2/ausbildung?per_page=50');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const education = await response.json();
+        return await Promise.all(education.map(async (edu: any): Promise<Education> => ({
+          school: edu.acf.uniname,
+          degree: edu.acf.abschluss,
+          startDate: edu.acf.startzeitraum,
+          endDate: edu.acf.endzeitraum,
+          logoUrl: edu.acf.unibild ? await fetchLogo(edu.acf.unibild) : '', // Verwenden Sie die fetchLogo-Funktion
+        })));
+      } catch (error) {
+        console.error("Failed to fetch education:", error);
+        return [];
+      }
+    };
+
+    return await fetchEducation();
+  },
+  
   projects: [
     {
       title: "Chat Collect",
